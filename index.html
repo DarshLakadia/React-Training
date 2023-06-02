@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+    <style>
+      .transparent {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="create-element-form">
+      <label for="select-tag">Choose a Tag:</label>
+      <select id="select-tag" class="onchange-input">
+        <option value="h1">Heading</option>
+        <option value="p">Paragraph</option>
+        <option value="div">Div</option>
+      </select>
+      <br />
+      <label for="tag-color">Select color:</label>
+      <input
+        type="color"
+        id="tag-color"
+        name="tagcolor"
+        value="#000000"
+        class="onchange-input"
+      /><br />
+      <textarea
+        name="tag-content"
+        id="tag-content"
+        cols="20"
+        rows="5"
+        class="onchange-input"
+      ></textarea
+      ><br />
+      <div class="button-container">
+        <input id="add-btn" type="button" value="Add" />
+        <input
+          id="edit-btn"
+          class="action-btn transparent"
+          type="button"
+          value="Edit"
+        />
+        <input
+          id="delete-btn"
+          class="action-btn transparent"
+          type="button"
+          value="Delete"
+        />
+        <input
+          id="cancel-btn"
+          class="action-btn transparent"
+          type="button"
+          value="Cancel"
+        />
+      </div>
+    </form>
+    <div class="dynamic-content"></div>
+    <script src="/index.js"></script>
+  </body>
+</html>
