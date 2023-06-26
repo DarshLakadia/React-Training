@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import List from './components/List.jsx';
+import toDo from './assets/todo.json';
 
 function App() {
   const [count, setCount] = useState(() => initialCount())
@@ -16,7 +16,6 @@ function App() {
   }
   const decreaseCount = () => {
     setCount((prev) => {
-      // console.log('Decreasing', prev );
       return   prev != 0 ? prev -= 1 : prev
     })
   }
@@ -26,6 +25,7 @@ function App() {
       <button onClick={increaseCount}>+</button>
       <div>{count}</div>
       <button onClick={decreaseCount}>-</button>
+      <List  todo= {toDo}/>
     </>
   )
 }
