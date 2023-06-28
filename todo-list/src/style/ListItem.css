@@ -1,0 +1,24 @@
+.item-message-container{
+  display: flex;
+  justify-content: space-between;
+}
+.item-message-left-container{
+  display: flex;
+  width: 85%;
+  align-items: center;
+  gap:10px;
+}
+.item-message-left-container p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  margin:0px;
+}
+.item-message-right-container{
+  display: flex;
+  gap: 5px;
+}
+input:checked + p{
+  text-decoration-line: line-through;
+  color:darkgray;
+}

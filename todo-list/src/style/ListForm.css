@@ -1,0 +1,17 @@
+.card{
+  width: 60%;
+  margin-inline: auto;
+  margin-top: 1rem;
+}
+.form-group-container{
+  display: flex;
+  gap: 10px;
+}
+#input-text{
+  width: 90%;
+  display: inline-block;
+}
+.add-button{
+  display: flex;
+  align-items: center;
+}
