@@ -17,33 +17,32 @@ const ListItem = ({ item }) => {
           });
         }}
       />
-      {item.isUpdatable && (
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-      )}
-      {item.isUpdatable && (
-        <button
-          onClick={() =>
-            dispatch({ type: "edit_item", data: text, itemId: item.id })
-          }
-        >
-          Update
-        </button>
-      )}
-      {!item.isUpdatable && (
-        <p style={{ textDecoration: item.isChecked ? "line-through" : "" }}>
-          {item.message}
-        </p>
-      )}
-      {!item.isUpdatable && (
-        <button
-          onClick={() => dispatch({ type: "toggle_update", itemId: item.id })}
-        >
-          Edit
-        </button>
+      {item.isUpdatable ? (
+        <>
+          <input
+            type="text"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button
+            onClick={() =>
+              dispatch({ type: "edit_item", data: text, itemId: item.id })
+            }
+          >
+            Update
+          </button>
+        </>
+      ) : (
+        <>
+          <p style={{ textDecoration: item.isChecked ? "line-through" : "" }}>
+            {item.message}
+          </p>
+          <button
+            onClick={() => dispatch({ type: "toggle_update", itemId: item.id })}
+          >
+            Edit
+          </button>
+        </>
       )}
       <button
         onClick={() => dispatch({ type: "remove_item", itemId: item.id })}

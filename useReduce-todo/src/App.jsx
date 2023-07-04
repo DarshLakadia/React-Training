@@ -8,6 +8,10 @@ export const ListContext = React.createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case "add_item":
+      if (action.data.trim() === "") {
+        alert("Please enter a Task");
+        return [...state];
+      }
       return [
         ...state,
         {
@@ -21,6 +25,10 @@ const reducer = (state, action) => {
       return state.filter((item) => item.id !== action.itemId);
     case "edit_item":
       console.log("edit_item: ", action.data);
+      if (action.data.trim() === "") {
+        alert("Please enter a Task");
+        return [...state];
+      }
       return state.map((todo) =>
         todo.id === action.itemId
           ? { ...todo, message: action.data, isUpdatable: false }
