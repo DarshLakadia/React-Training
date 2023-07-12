@@ -86,7 +86,6 @@ function ModalDialog({ userId }) {
         error: "Error creating user",
       },
       {
-        autoClose: true,
         transition: Slide,
         autoClose: 2000,
       }

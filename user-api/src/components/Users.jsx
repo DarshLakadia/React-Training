@@ -1,10 +1,14 @@
 import Table from "react-bootstrap/Table";
 import User from "./User";
+import ModalDialog from "./ModalDialog";
 const Users = () => {
   return (
     <>
-      <h4>Users List</h4>
-      <Table striped className="table align-middle">
+      <div className="d-flex justify-content-between mx-5 my-3">
+        <h4>Users List</h4>
+        <ModalDialog />
+      </div>
+      <Table striped className="align-middle">
         <thead>
           <tr className="text-center">
             <th>#</th>

@@ -4,7 +4,6 @@ import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Users from "./components/Users";
 import axios from "axios";
-import ModalDialog from "./components/ModalDialog";
 export const UserContext = React.createContext();
 
 const reducer = (state, action) => {
@@ -58,11 +57,7 @@ function App() {
 
   return (
     <>
-      <button className="btn btn-primary" onClick={notify}>
-        Create User
-      </button>
       <UserContext.Provider value={{ users: users, dispatch: dispatch }}>
-        <ModalDialog />
         <ToastContainer
           position="top-right"
           autoClose={2000}
