@@ -9,35 +9,34 @@ import { Slide, toast } from "react-toastify";
 function ModalDialog({ userId }) {
   const baseUrl = "https://reqres.in/api/users";
   const [show, setShow] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [input, setInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { dispatch } = useContext(UserContext);
 
   const resetState = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
+    setInput({});
   };
   const handleEdit = (userId) => {
     toast.promise(
       axios
         .patch(`${baseUrl}/${userId}`, {
-          first_name: firstName,
-          last_name: lastName,
-          email: email,
+          first_name: input.firstName,
+          last_name: input.lastName,
+          email: input.email,
         })
         .then((response) => {
-          console.log(response.data);
           dispatch({
             type: "UPDATE_USER",
             payload: {
               userId: userId,
-              firstName: firstName,
-              lastName: lastName,
-              email: email,
+              firstName: response.data.first_name,
+              lastName: response.data.last_name,
+              email: response.data.email,
             },
           });
         })
@@ -46,13 +45,12 @@ function ModalDialog({ userId }) {
         }),
       {
         pending: "User is updating",
-        success: `${firstName} is updated successfully`,
+        success: `${input.firstName} is updated successfully`,
         error: "Error updating user",
       },
       {
         autoClose: true,
         transition: Slide,
-        autoClose: 2000,
       }
     );
   };
@@ -61,12 +59,11 @@ function ModalDialog({ userId }) {
     toast.promise(
       axios
         .post(`${baseUrl}/${userId}`, {
-          first_name: firstName,
-          last_name: lastName,
-          email: email,
+          first_name: input.firstName,
+          last_name: input.lastName,
+          email: input.email,
         })
         .then((response) => {
-          console.log(response.data.id);
           dispatch({
             type: "CREATE_USER",
             payload: {
@@ -95,9 +92,11 @@ function ModalDialog({ userId }) {
     if (userId !== undefined) {
       axios.get(`${baseUrl}/${userId}`).then((response) => {
         const data = response.data.data;
-        setFirstName(data.first_name);
-        setEmail(data.email);
-        setLastName(data.last_name);
+        setInput({
+          firstName: data.first_name,
+          email: data.email,
+          lastName: data.last_name,
+        });
       });
     }
   }, []);
@@ -126,24 +125,28 @@ function ModalDialog({ userId }) {
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
-                onChange={(e) => setFirstName(e.target.value)}
-                value={firstName}
+                onChange={(e) =>
+                  setInput({ ...input, firstName: e.target.value })
+                }
+                value={input.firstName}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
-                onChange={(e) => setLastName(e.target.value)}
-                value={lastName}
+                onChange={(e) =>
+                  setInput({ ...input, lastName: e.target.value })
+                }
+                value={input.lastName}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                onChange={(e) => setInput({ ...input, email: e.target.value })}
+                value={input.email}
               />
             </Form.Group>
           </Form>

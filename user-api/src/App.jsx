@@ -12,8 +12,6 @@ const reducer = (state, action) => {
     case "LIST_USER":
       return payload;
     case "CREATE_USER":
-      console.log("create user", state.length);
-
       return [
         ...state,
         {
@@ -26,10 +24,7 @@ const reducer = (state, action) => {
           }-image.jpg`,
         },
       ];
-    case "GET_USER":
-      console.log("get user");
     case "UPDATE_USER":
-      console.log("update user", payload);
       return state.map((user) =>
         user.id === payload.userId
           ? {
@@ -41,7 +36,6 @@ const reducer = (state, action) => {
           : user
       );
     case "DELETE_USER":
-      console.log("delete user");
       return state.filter((user) => user.id !== payload.userId);
   }
 };
